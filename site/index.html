@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математический редактор формул</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Математический редактор формул</h1>
+        </header>
+
+        <nav class="menu-bar">
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">Формулы</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="#" class="dropdown-link" onclick="showAddFormulaModal()">Добавить формулу</a></li>
+                            <li class="dropdown-item"><a href="#" class="dropdown-link" onclick="showAlert('Функция поиска будет реализована позже')">Поиск</a></li>
+                            <li class="dropdown-item"><a href="#" class="dropdown-link" onclick="showAlert('Функция импорта будет реализована позже')">Импорт</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">Обучение</a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="#" class="dropdown-link" onclick="showTopicSelectionModal()">Выбрать тему</a></li>
+                            <li class="dropdown-item"><a href="#" class="dropdown-link" onclick="showAlert('Функция поиска будет реализована позже')">Поиск</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item"><a href="#" class="menu-link" onclick="showAlert('Приложение будет закрыто')">Выход</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <h2>Математический редактор формул</h2>
+        </div>
+
+        <div id="formulaEditor" class="formula-editor">
+            <div class="formula-container">
+                <div class="formula-display">
+                    <h3>Формула:</h3>
+                    <p id="mainFormula" class="formula-text">S = v * t (ПРИМЕР)</p>
+                </div>
+                <div class="formula-inputs" id="formulaInputs">
+
+                </div>
+            </div>
+            <div class="formula-actions">
+                <button class="btn btn-primary" onclick="showInsertFormulaModal()">Добавить формулу</button>
+                <button class="btn btn-primary" onclick="showAlert('Спецсимвол добавлен')">Добавить спецсимвол</button>
+                <button class="btn btn-primary" onclick="calculateResult()">Подсчитать ответ</button>
+            </div>
+        </div>
+
+        <div id="addFormulaModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Добавление формулы</h3>
+                    <span class="close-btn" onclick="closeModal('addFormulaModal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Здесь будет база данных с формулами</p>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="closeModal('addFormulaModal')">Отмена</button>
+                    <button class="btn btn-primary" onclick="insertMainFormula()">Подтвердить</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="insertFormulaModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Добавление формулы в переменную</h3>
+                    <span class="close-btn" onclick="closeModal('insertFormulaModal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Выберите переменную для замены формулой:</p>
+                    <div id="variableList"></div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="closeModal('insertFormulaModal')">Отмена</button>
+                    <button class="btn btn-primary" onclick="confirmInsertFormula()">Подтвердить</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="topicSelectionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Выбор темы</h3>
+                    <span class="close-btn" onclick="closeModal('topicSelectionModal')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p>Здесь будет база данных с темами</p>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="closeModal('topicSelectionModal')">Отмена</button>
+                    <button class="btn btn-primary" onclick="openStudyWindow()">Продолжить</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="studyWindow" class="modal">
+            <div class="modal-content" style="width: 80%; max-width: 800px;">
+                <div class="modal-header">
+                    <h3>Изучение тем</h3>
+                    <span class="close-btn" onclick="closeModal('studyWindow')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <h4 style="text-align: center; margin-bottom: 30px;">Выберите формат материала:</h4>
+
+                    <div class="study-options">
+                        <div class="study-option" onclick="showAlert('Открыт раздел: Лекции')">Лекции</div>
+                        <div class="study-option" onclick="showAlert('Открыт раздел: Презентации')">Презентации</div>
+                        <div class="study-option" onclick="showAlert('Открыт раздел: Видеоматериалы')">Видеоматериалы</div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="btn btn-primary" onclick="showAlert('Прогресс сохранён')">Сохранение прогресса</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
