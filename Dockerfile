@@ -1,4 +1,4 @@
 FROM python
 WORKDIR /python-app
 COPY . .
-CMD ["python", "LAB#2"]
+CMD ["python", "LAB#2.py"]
